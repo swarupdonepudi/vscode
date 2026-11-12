@@ -31,6 +31,7 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 | ⌘⇧T | New tab from a past conversation |
 | ⌘W | Close the tab |
 | ⌘R | Clear the screen, keep the scrollback |
+| ⌘0 | Focus the terminal (the tab you were last in), from anywhere |
 | ⌘1 to ⌘9 | Jump to terminal tab 1 to 9, from anywhere |
 | ⌘⇧↩ | Focus the terminal and maximise it, from anywhere |
 

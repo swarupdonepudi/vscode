@@ -68,5 +68,9 @@
     {
         "key": "cmd+9",
         "command": "workbench.action.terminal.focusAtIndex9"
+    },
+    {
+        "key": "cmd+0",
+        "command": "workbench.action.terminal.focus"
     }
 ]
