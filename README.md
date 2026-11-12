@@ -14,10 +14,10 @@ gh repo clone swarupdonepudi/vscode ~/scm/github.com/swarupdonepudi/vscode
 1. Installs VS Code with Homebrew if it's missing.
 2. Copies SF Mono, Apple's monospaced font, from Terminal.app into `~/Library/Fonts`.
 3. Saves your existing `settings.json` and `keybindings.json` next to themselves, then links both to this repo.
-4. Installs the extensions in `extensions.txt` and [Agent Tabs](https://github.com/swarupdonepudi/agent-tabs).
+4. Installs the extensions in `extensions.txt`, and installs or upgrades [Agent Tabs](https://github.com/swarupdonepudi/agent-tabs) to its latest release.
 5. Installs the Agent Tabs plugin for Claude Code.
 
-Because the two files are links, a change made in VS Code lands in this repo. Commit and push it, and `git pull` brings it to your other Macs.
+Because the two files are links, a change made in VS Code lands in this repo. Commit and push it, and `git pull && ./setup.sh` brings it to your other Macs.
 
 ## What you get
 
@@ -41,7 +41,7 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 
 ## Make it yours
 
-- `agentTabs.defaultFolder` in `settings.json` is the workspace folder new agent tabs open in (mine is `planton-platform`).
+- `agentTabs.defaultFolder` in `settings.json` is the workspace folder new agent tabs open in (mine is `planton-platform`). To pick another folder on one Mac without changing the shared file, add `export AGENT_TABS_FOLDER=<folder name or ~/path>` to `~/.zshrc`, then quit and reopen VS Code.
 - `agentTabs.extraArgs` holds the flags every Claude tab starts with (mine is `--chrome`).
 
 ## License

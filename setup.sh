@@ -76,20 +76,21 @@ while IFS= read -r ext || [ -n "$ext" ]; do
   fi
 done <"$REPO/extensions.txt"
 
-if has_ext "swarupdonepudi.agent-tabs"; then
-  say "ok   swarupdonepudi.agent-tabs"
+# Agent Tabs comes from its latest GitHub release, and is upgraded when a newer one is out.
+release=$(curl -fsSL "https://api.github.com/repos/$AGENT_TABS_REPO/releases/latest" || true)
+latest=$(printf '%s\n' "$release" | sed -n 's/.*"tag_name": *"v\([^"]*\)".*/\1/p' | head -n 1)
+url=$(printf '%s\n' "$release" | sed -n 's/.*"browser_download_url": *"\([^"]*\.vsix\)".*/\1/p' | head -n 1)
+current=$("$CODE" --list-extensions --show-versions 2>/dev/null | grep -i '^swarupdonepudi\.agent-tabs@' | sed 's/.*@//' || true)
+if [ -n "$current" ] && { [ -z "$latest" ] || [ "$current" = "$latest" ]; }; then
+  say "ok   swarupdonepudi.agent-tabs $current"
+elif [ -n "$url" ]; then
+  tmp=$(mktemp -d)
+  curl -fsSL -o "$tmp/agent-tabs.vsix" "$url"
+  "$CODE" --install-extension "$tmp/agent-tabs.vsix" --force >/dev/null
+  rm -rf "$tmp"
+  say "ok   swarupdonepudi.agent-tabs $latest installed"
 else
-  url=$(curl -fsSL "https://api.github.com/repos/$AGENT_TABS_REPO/releases/latest" |
-    sed -n 's/.*"browser_download_url": *"\([^"]*\.vsix\)".*/\1/p' | head -n 1)
-  if [ -n "$url" ]; then
-    tmp=$(mktemp -d)
-    curl -fsSL -o "$tmp/agent-tabs.vsix" "$url"
-    "$CODE" --install-extension "$tmp/agent-tabs.vsix" >/dev/null
-    rm -rf "$tmp"
-    say "ok   swarupdonepudi.agent-tabs installed from its latest release"
-  else
-    say "!!   couldn't find the Agent Tabs release; install it from https://github.com/$AGENT_TABS_REPO/releases"
-  fi
+  say "!!   couldn't find the Agent Tabs release; install it from https://github.com/$AGENT_TABS_REPO/releases"
 fi
 
 # 5. The Agent Tabs Claude plugin, so tabs come back after a restart
