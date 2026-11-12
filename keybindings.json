@@ -1,0 +1,72 @@
+[
+    {
+        "key": "cmd+r",
+        "command": "workbench.action.terminal.sendSequence",
+        "when": "terminalFocus",
+        "args": {
+            "text": "\f"
+        }
+    },
+    {
+        "key": "cmd+w",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+shift+enter",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+shift+enter",
+        "command": "runCommands",
+        "when": "!terminalFocus && !panelMaximized",
+        "args": {
+            "commands": [
+                "workbench.action.terminal.focus",
+                "workbench.action.toggleMaximizedPanel"
+            ]
+        }
+    },
+    {
+        "key": "cmd+shift+enter",
+        "command": "workbench.action.terminal.focus",
+        "when": "!terminalFocus && panelMaximized"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.terminal.focusAtIndex1"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.terminal.focusAtIndex2"
+    },
+    {
+        "key": "cmd+3",
+        "command": "workbench.action.terminal.focusAtIndex3"
+    },
+    {
+        "key": "cmd+4",
+        "command": "workbench.action.terminal.focusAtIndex4"
+    },
+    {
+        "key": "cmd+5",
+        "command": "workbench.action.terminal.focusAtIndex5"
+    },
+    {
+        "key": "cmd+6",
+        "command": "workbench.action.terminal.focusAtIndex6"
+    },
+    {
+        "key": "cmd+7",
+        "command": "workbench.action.terminal.focusAtIndex7"
+    },
+    {
+        "key": "cmd+8",
+        "command": "workbench.action.terminal.focusAtIndex8"
+    },
+    {
+        "key": "cmd+9",
+        "command": "workbench.action.terminal.focusAtIndex9"
+    }
+]

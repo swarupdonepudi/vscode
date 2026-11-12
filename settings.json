@@ -1,0 +1,44 @@
+{
+    "workbench.startupEditor": "none",
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "update.showReleaseNotes": false,
+    "workbench.colorTheme": "Cursor Dark Midnight",
+    "window.autoDetectColorScheme": false,
+    "workbench.activityBar.location": "top",
+    "window.commandCenter": true,
+    "chat.agent.enabled": false,
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "workbench.colorCustomizations": {
+        "[Cursor Dark Midnight]": {
+            "terminal.background": "#1e2127",
+            "terminal.foreground": "#8b97ae",
+            "terminal.selectionBackground": "#434c5e",
+            "terminal.selectionForeground": "#eceff4",
+            "terminalCursor.foreground": "#8fbcbb",
+            "terminalCursor.background": "#1e2127"
+        }
+    },
+    "terminal.integrated.fontFamily": "SF Mono",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.lineHeight": 1.35,
+    "terminal.integrated.minimumContrastRatio": 1,
+    "terminal.integrated.drawBoldTextInBrightColors": true,
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 100,
+        "editor.lineHeight": 1.5
+    },
+    "window.confirmBeforeClose": "keyboardOnly",
+    "window.restoreWindows": "preserve",
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.enablePersistentSessions": false,
+    "agentTabs.defaultFolder": "planton-platform",
+    "agentTabs.extraArgs": [
+        "--chrome"
+    ]
+}

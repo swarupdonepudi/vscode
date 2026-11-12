@@ -1,0 +1,3 @@
+# Marketplace extensions, one ID per line. setup.sh installs them.
+evanlong.cursor-themes
+yzhang.markdown-all-in-one
