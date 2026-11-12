@@ -37,7 +37,6 @@
     "window.restoreWindows": "preserve",
     "extensions.ignoreRecommendations": true,
     "terminal.integrated.enablePersistentSessions": false,
-    "agentTabs.defaultFolder": "planton-platform",
     "agentTabs.extraArgs": [
         "--chrome"
     ],

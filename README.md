@@ -41,7 +41,7 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 
 ## Make it yours
 
-- `agentTabs.defaultFolder` in `settings.json` is the workspace folder new agent tabs open in (mine is `planton-platform`). To pick another folder on one Mac without changing the shared file, add `export AGENT_TABS_FOLDER=<folder name or ~/path>` to `~/.zshrc`, then quit and reopen VS Code.
+- New agent tabs open in the first workspace folder. To pick another folder on a Mac, add `export AGENT_TABS_FOLDER=<folder name or ~/path>` to `~/.zshrc`, then quit and reopen VS Code (mine is `planton-platform`).
 - `agentTabs.extraArgs` holds the flags every Claude tab starts with (mine is `--chrome`).
 
 ## License
