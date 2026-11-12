@@ -40,5 +40,6 @@
     "agentTabs.defaultFolder": "planton-platform",
     "agentTabs.extraArgs": [
         "--chrome"
-    ]
+    ],
+    "editor.accessibilitySupport": "off"
 }
