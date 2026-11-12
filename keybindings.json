@@ -72,5 +72,9 @@
     {
         "key": "cmd+0",
         "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "cmd+t",
+        "command": "agentTabs.newTab"
     }
 ]
