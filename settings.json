@@ -37,8 +37,10 @@
     "window.restoreWindows": "preserve",
     "extensions.ignoreRecommendations": true,
     "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.tabs.focusMode": "singleClick",
     "agentTabs.extraArgs": [
         "--chrome"
     ],
-    "editor.accessibilitySupport": "off"
+    "editor.accessibilitySupport": "off",
+    "explorer.confirmPasteNative": false
 }

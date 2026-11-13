@@ -34,8 +34,11 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 | ⌘0 | Focus the terminal (the tab you were last in), from anywhere |
 | ⌘1 to ⌘9 | Jump to terminal tab 1 to 9, from anywhere |
 | ⌘⇧↩ | Focus the terminal and maximise it, from anywhere |
+| ⇧↩ | In Claude Code, a new line instead of sending the message |
 
 **Quiet:** no extension recommendations, no "History restored" banners, and a confirmation before ⌘W closes the window. On reopen, VS Code restores the windows you had open.
+
+**One click focuses a terminal tab:** clicking a tab puts the cursor in it, like ⌘1–⌘9 do.
 
 **Agent tabs that survive a restart:** quit VS Code and reopen it, and every Claude tab comes back in its own conversation.
 

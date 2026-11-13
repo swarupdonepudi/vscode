@@ -8,6 +8,14 @@
         }
     },
     {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "when": "terminalFocus",
+        "args": {
+            "text": "\u001b\r"
+        }
+    },
+    {
         "key": "cmd+w",
         "command": "workbench.action.terminal.kill",
         "when": "terminalFocus"
