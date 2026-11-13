@@ -93,14 +93,17 @@ else
   say "!!   couldn't find the Agent Tabs release; install it from https://github.com/$AGENT_TABS_REPO/releases"
 fi
 
-# 5. The Agent Tabs Claude plugin, so tabs come back after a restart
+# 5. The Agent Tabs Claude plugin, so tabs come back after a restart and show
+#    what each agent is doing. Installed if missing, upgraded otherwise.
 step "Claude Code plugin"
 if command -v claude >/dev/null 2>&1; then
+  claude plugin marketplace list 2>/dev/null | grep -q "agent-tabs" ||
+    claude plugin marketplace add "$AGENT_TABS_REPO" >/dev/null
   if claude plugin list 2>/dev/null | grep -q "agent-tabs@agent-tabs"; then
-    say "ok   agent-tabs plugin"
+    claude plugin marketplace update agent-tabs >/dev/null 2>&1 || true
+    claude plugin update agent-tabs@agent-tabs >/dev/null 2>&1 || true
+    say "ok   agent-tabs plugin up to date (restart Claude sessions to apply)"
   else
-    claude plugin marketplace list 2>/dev/null | grep -q "agent-tabs" ||
-      claude plugin marketplace add "$AGENT_TABS_REPO" >/dev/null
     claude plugin install agent-tabs@agent-tabs >/dev/null
     say "ok   agent-tabs plugin installed"
   fi
@@ -109,4 +112,4 @@ else
 fi
 
 step "Done"
-say "Reload VS Code once (⌘⇧P → Reload Window) if it was open."
+say "Quit VS Code (⌘Q) and reopen it if it was open: Agent Tabs brings every Claude tab back."
