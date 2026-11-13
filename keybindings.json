@@ -78,6 +78,16 @@
         "command": "workbench.action.terminal.focusAtIndex9"
     },
     {
+        "key": "cmd+alt+up",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+alt+down",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    {
         "key": "cmd+0",
         "command": "workbench.action.terminal.focus"
     },
