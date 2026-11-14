@@ -10,15 +10,15 @@
     {
         "key": "shift+enter",
         "command": "workbench.action.terminal.sendSequence",
-        "when": "terminalFocus && terminalShellType == 'claude'",
+        "when": "terminalFocus",
         "args": {
-            "text": "\u001b[13;2u"
+            "text": "\u001b\r"
         }
     },
     {
         "key": "ctrl+enter",
         "command": "workbench.action.terminal.sendSequence",
-        "when": "terminalFocus && terminalShellType == 'claude'",
+        "when": "terminalFocus",
         "args": {
             "text": "\u001b[13;5u"
         }
@@ -26,7 +26,7 @@
     {
         "key": "ctrl+-",
         "command": "workbench.action.terminal.sendSequence",
-        "when": "terminalFocus && terminalShellType == 'claude'",
+        "when": "terminalFocus",
         "args": {
             "text": "\u001b[45;5u"
         }
@@ -34,7 +34,7 @@
     {
         "key": "ctrl+shift+b",
         "command": "workbench.action.terminal.sendSequence",
-        "when": "terminalFocus && terminalShellType == 'claude'",
+        "when": "terminalFocus",
         "args": {
             "text": "\u001b[98;6u"
         }

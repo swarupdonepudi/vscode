@@ -47,9 +47,12 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 
 ## Claude Code keys
 
-Every Claude Code shortcut works as it does in iTerm. Most keys need nothing: VS Code's terminal sends Claude the same bytes iTerm does. Four don't, because without the kitty keyboard protocol VS Code's terminal sends ⇧↩ and ⌃↩ as a plain Enter, and ⌃- and ⌃⇧B as nothing at all. `keybindings.json` maps those four to the exact sequences iTerm sends (`ESC[13;2u`, `ESC[13;5u`, `ESC[45;5u`, `ESC[98;6u`). Claude reads them whether or not it switched the protocol on.
+Every Claude Code shortcut works as it does in iTerm. Most keys need nothing: VS Code's terminal sends Claude the same bytes iTerm does. Four don't. Without the kitty keyboard protocol, VS Code's terminal sends ⇧↩ and ⌃↩ as a plain Enter, and sends ⌃- and ⌃⇧B as nothing at all. `keybindings.json` fixes them:
 
-The four mappings apply only in a tab where Claude is running (`terminalShellType == 'claude'`), so a plain zsh tab still gets ordinary keys. Two keys behave like iTerm for a different reason: ⌃↑ and ⌃↓ belong to macOS Mission Control, and ⌘K clears the terminal in VS Code as it does in iTerm.
+- ⇧↩ sends exactly what ⌥↩ sends (`ESC` then Enter), which Claude reads as a new line. In a zsh tab it acts like Enter.
+- ⌃↩, ⌃- and ⌃⇧B send the sequences iTerm sends (`ESC[13;5u`, `ESC[45;5u`, `ESC[98;6u`). Claude reads them whether or not it turned the protocol on.
+
+The mappings apply in every terminal tab. VS Code can't tell a Claude tab from a shell tab on macOS: its `claude` shell type exists only on Windows. So in a zsh tab, ⌃↩, ⌃- and ⌃⇧B send an escape code instead of nothing. Two keys behave like iTerm for a different reason: ⌃↑ and ⌃↓ belong to macOS Mission Control, and ⌘K clears the terminal in VS Code as it does in iTerm.
 
 ## Make it yours
 
