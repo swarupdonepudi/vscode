@@ -15,7 +15,9 @@ gh repo clone swarupdonepudi/vscode ~/scm/github.com/swarupdonepudi/vscode
 2. Copies SF Mono, Apple's monospaced font, from Terminal.app into `~/Library/Fonts`.
 3. Saves your existing `settings.json` and `keybindings.json` next to themselves, then links both to this repo.
 4. Installs the extensions in `extensions.txt`, and installs or upgrades [Agent Tabs](https://github.com/swarupdonepudi/agent-tabs) to its latest release.
-5. Installs the Agent Tabs plugin for Claude Code.
+5. Installs or upgrades the Agent Tabs plugin for Claude Code.
+6. Turns off Claude Code's own terminal progress bar (`~/.claude/settings.json`, saved first), so it can't overwrite Agent Tabs' status icon.
+7. If `~/.zshrc` loads oh-my-zsh, makes an idle shell tab read "zsh" instead of `user@host:~/path` (`~/.zshrc` saved first).
 
 Because the two files are links, a change made in VS Code lands in this repo. Commit and push it, and `git pull && ./setup.sh` brings it to your other Macs.
 

@@ -111,5 +111,61 @@ else
   say "!!   Claude Code isn't installed. Install it (https://claude.com/claude-code), then run this again."
 fi
 
+# 6. Claude Code's own terminal progress bar off. Agent Tabs' status icon uses
+#    the same terminal signal, and Claude's own would overwrite its alert icon.
+step "Claude Code settings"
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+# Sets the key with macOS's built-in JavaScript: every other key and Claude's
+# 2-space format stay as they were, and a linked file is written through the link.
+# shellcheck disable=SC2016 # JavaScript, not shell: $ is literal
+PROGRESS_JS='ObjC.import("Foundation");
+function run(argv) {
+  const path = $(argv[0]).stringByResolvingSymlinksInPath.js;
+  const text = $.NSString.stringWithContentsOfFileEncodingError(path, $.NSUTF8StringEncoding, null);
+  const settings = text.isNil() ? {} : JSON.parse(text.js);
+  if (settings.terminalProgressBarEnabled === false) return "already";
+  settings.terminalProgressBarEnabled = false;
+  $(JSON.stringify(settings, null, 2) + "\n").writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, null);
+  return "set";
+}'
+mkdir -p "$HOME/.claude"
+if [ -f "$CLAUDE_SETTINGS" ] && grep -q '"terminalProgressBarEnabled": *false' "$CLAUDE_SETTINGS"; then
+  say "ok   Claude's own progress bar already off"
+else
+  [ -f "$CLAUDE_SETTINGS" ] && cp "$CLAUDE_SETTINGS" "$CLAUDE_SETTINGS.before-setup-$STAMP"
+  if result=$(osascript -l JavaScript -e "$PROGRESS_JS" "$CLAUDE_SETTINGS" 2>&1); then
+    say "ok   Claude's own progress bar $( [ "$result" = set ] && echo "turned off" || echo "already off" )"
+  else
+    say "!!   couldn't edit $CLAUDE_SETTINGS ($result). Set \"terminalProgressBarEnabled\": false in it yourself."
+  fi
+fi
+
+# 7. Short titles for plain shell tabs. VS Code shows the title the shell sets,
+#    and oh-my-zsh's default is user@host:~/path.
+step "Shell tab titles"
+ZSHRC="$HOME/.zshrc"
+# shellcheck disable=SC2016 # written into ~/.zshrc as is
+TITLE_LINE='[[ "$TERM_PROGRAM" == vscode ]] && ZSH_THEME_TERM_TITLE_IDLE="zsh"'
+if [ ! -f "$ZSHRC" ] || ! grep -q 'source .*oh-my-zsh\.sh' "$ZSHRC"; then
+  say "ok   not needed (~/.zshrc doesn't load oh-my-zsh)"
+elif grep -qF "$TITLE_LINE" "$ZSHRC"; then
+  say "ok   short shell titles already set"
+else
+  backup="$ZSHRC.before-setup-$STAMP"
+  cp "$ZSHRC" "$backup"
+  awk -v line="$TITLE_LINE" '{ print }
+    !done && /^[[:space:]]*source[[:space:]].*oh-my-zsh\.sh/ {
+      print "# VS Code tabs show the shell'"'"'s own title (Agent Tabs puts a status icon before it), so an idle shell reads \"zsh\""
+      print line
+      done = 1
+    }' "$backup" >"$ZSHRC"
+  if grep -qF "$TITLE_LINE" "$ZSHRC" && zsh -n "$ZSHRC"; then
+    say "ok   short shell titles set (your old ~/.zshrc is saved as $(basename "$backup"))"
+  else
+    cp "$backup" "$ZSHRC"
+    say "!!   couldn't add the short-title line to ~/.zshrc; it's unchanged. Add this after oh-my-zsh loads: $TITLE_LINE"
+  fi
+fi
+
 step "Done"
 say "Quit VS Code (⌘Q) and reopen it if it was open: Agent Tabs brings every Claude tab back."
