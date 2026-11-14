@@ -35,6 +35,8 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 | ⌘1 to ⌘9 | Jump to terminal tab 1 to 9, from anywhere |
 | ⌘⇧↩ | Focus the terminal and maximise it, from anywhere |
 | ⇧↩ | In Claude Code, a new line instead of sending the message |
+| ⌃↩ | In Claude Code, send now instead of queueing behind the running turn |
+| ⌃- / ⌃⇧B | In Claude Code, undo the last edit / toggle brief mode |
 | ⌘⌥↑ / ⌘⌥↓ | Previous / next terminal tab, wrapping around |
 
 **Quiet:** no extension recommendations, no "History restored" banners, and a confirmation before ⌘W closes the window. On reopen, VS Code restores the windows you had open.
@@ -42,6 +44,12 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 **One click focuses a terminal tab:** clicking a tab puts the cursor in it, like ⌘1–⌘9 do.
 
 **Agent tabs that survive a restart:** quit VS Code and reopen it, and every Claude tab comes back in its own conversation.
+
+## Claude Code keys
+
+Every Claude Code shortcut works as it does in iTerm. Most keys need nothing: VS Code's terminal sends Claude the same bytes iTerm does. Four don't, because without the kitty keyboard protocol VS Code's terminal sends ⇧↩ and ⌃↩ as a plain Enter, and ⌃- and ⌃⇧B as nothing at all. `keybindings.json` maps those four to the exact sequences iTerm sends (`ESC[13;2u`, `ESC[13;5u`, `ESC[45;5u`, `ESC[98;6u`). Claude reads them whether or not it switched the protocol on.
+
+The four mappings apply only in a tab where Claude is running (`terminalShellType == 'claude'`), so a plain zsh tab still gets ordinary keys. Two keys behave like iTerm for a different reason: ⌃↑ and ⌃↓ belong to macOS Mission Control, and ⌘K clears the terminal in VS Code as it does in iTerm.
 
 ## Make it yours
 
