@@ -118,5 +118,9 @@
     {
         "key": "cmd+t",
         "command": "agentTabs.newTab"
+    },
+    {
+        "key": "cmd+alt+t",
+        "command": "agentTabs.newTabInFolder"
     }
 ]

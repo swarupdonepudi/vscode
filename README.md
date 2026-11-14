@@ -28,6 +28,7 @@ Because the two files are links, a change made in VS Code lands in this repo. Co
 | Keys | What it does |
 |---|---|
 | ⌘T | New tab running `claude --chrome` (Agent Tabs), from anywhere, even with no terminal open |
+| ⌘⌥T | New Claude tab in a folder you pick (workspace folders, recent picks or Browse…), from anywhere |
 | ⌘⇧T | New tab from a past conversation |
 | ⌘W | Close the tab |
 | ⌘R | Clear the screen, keep the scrollback |
