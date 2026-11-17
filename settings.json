@@ -5,7 +5,7 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "editor.minimap.enabled": false,
-    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.disableAIFeatures": true,
     "update.showReleaseNotes": false,
     "workbench.colorTheme": "Cursor Dark Midnight",
     "window.autoDetectColorScheme": false,
