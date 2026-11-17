@@ -42,5 +42,7 @@
         "--chrome"
     ],
     "editor.accessibilitySupport": "off",
-    "explorer.confirmPasteNative": false
+    "explorer.confirmPasteNative": false,
+    "search.followSymlinks": false,
+    "npm.autoDetect": "off"
 }
